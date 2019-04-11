@@ -1,0 +1,26 @@
+document AntiSleepSystemgoals : "AntiSleepSystem stakeholder goals" [
+	description "This document contains the stakeholder requirements for the Anti Sleep System."
+	section SystemFunctionality : "System Functionality" [
+		goal g1: "Electrical power"
+		[ description "The Anti Sleep System shall be supplied with 15V electrical power."
+		stakeholder antisleepsyst.cdb
+		]
+		]
+	section NonfunctionalProperties : "Nonfunctional system requirements"
+	[
+		goal ng1 : "Safety" [
+			description "The system shall be safe"
+			rationale "This is a control system, whose failure affects lives. "
+			stakeholder antisleepsyst.cdb antisleepsyst.jyt
+		]
+		goal ng1_1: "Physical damage"[
+			refines ng1
+			description "The system shall not cause the device to damage objects in its operational environment"
+		]
+		goal ng2 : "Maximum weight" [
+			description "The system shall stay within a specified weight limit."
+			stakeholder antisleepsyst.jyt
+			rationale "The system is part of an automobile."
+		]
+	]
+] 

@@ -1,0 +1,82 @@
+package AgreeFile
+public 
+   with Base_Types;
+   
+system Kinect
+	features
+		usbOutput: out data port Base_Types::Integer;	
+	annex agree {** 
+             guarantee "A output range" : usbOutput < 10;
+	**};	
+end Kinect ; 
+
+system AudioSystem
+	features
+		AudioInput: in data port Base_Types::Integer;
+		AudioOutput: out data port Base_Types::Integer;
+	annex agree {** 
+		assume "B input range" : AudioInput < 5;
+		guarantee "B output range" : AudioOutput < AudioInput + 5;
+	**};	
+end AudioSystem ; 
+
+system LEDDisplay
+	features
+		displayOutput: in data port Base_Types::Integer;
+	annex agree {** 
+		guarantee "C output range" : displayOutput = 10;
+	**};	
+end LEDDisplay ; 
+
+system DomeLight
+	features
+		LightOutput: in data port Base_Types::Integer;
+	annex agree {** 
+		guarantee "LightOutput output range" : LightOutput = 10;
+	**};	
+end DomeLight ; 
+   
+system Controller
+	features
+		ControllerInput: in data port base_Types::Integer;
+		ControllerOutput: out data port Base_Types::Integer;
+	annex agree {** 
+		assume "System input range " : ControllerInput = 10;
+		guarantee "LightOutput output range" : ControllerOutput = 10;
+	**};	
+end Controller ; 
+   
+system AntiSleepSystem
+	features
+		Input: in data port Base_Types::Integer;
+		Output: out data port Base_Types::Integer;
+	annex agree {** 
+		assume "System input range " : Input = 10;
+		guarantee "System output range" : Output > Input;
+	**};	
+end AntiSleepSystem;
+
+system implementation AntiSleepSystem.Impl
+	subcomponents
+		A_sub : system Kinect ; 
+		B_sub : system AudioSystem ; 
+		C_sub : system Controller ;
+		D_sub : system LEDDisplay ; 
+		E_sub : system DomeLight;
+	connections
+		A_TO_C : port A_sub.usbOutput -> C_sub.ControllerInput 
+			{Communication_Properties::Timing => immediate;};
+		C_TO_B : port C_sub.ControllerOutput -> B_sub.AudioInput 
+			{Communication_Properties::Timing => immediate;};
+		C_TO_D : port C_sub.ControllerOutput -> D_sub.displayOutput   
+			{Communication_Properties::Timing => immediate;};
+		C_TO_E : port C_sub.ControllerOutput -> E_sub.LightOutput 
+			{Communication_Properties::Timing => immediate;}; 
+end AntiSleepSystem.Impl;
+
+end AgreeFile;
+
+
+
+
+

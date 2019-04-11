@@ -1,0 +1,8 @@
+organization antisleepsyst
+stakeholder cdb [
+	full name "Chandler Bing"
+	
+]
+stakeholder jyt [
+	full name "Joey Tribbianni"
+]

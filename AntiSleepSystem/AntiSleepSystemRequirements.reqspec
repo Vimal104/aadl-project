@@ -1,0 +1,36 @@
+system requirements sysreq
+for AntiSleepSystem::AntiSleepSystemImpl  
+[
+	val AntiSleepSys_maxweight = 0.5 kg
+	val AntiSleepSys_powerbudget = 15 W
+	val AntiSleepSys_ram = 500.0 MByte 
+	
+	requirement R1: "Kinect system"
+	[
+		description "The eyelid distance should be completely extracted, and
+					 the detection should work both at daytime and at night,"
+	]
+	
+	requirement R2: "Safety"
+	[
+		description "The system should be safe to use."
+	]
+	
+	requirement R3: "Weight Limit"
+	[
+		description "The weight of the Anti-Sleep System should not exceed"
+			AntiSleepSys_maxweight
+	]
+	
+	requirement R4: "Power consumption"
+	[
+		description "The Anti-Sleep System should not consume power more than"
+			AntiSleepSys_maxweight
+	]
+	
+	requirement R5: "Memory Consumption"
+	[
+		description "The memory consumption for the Anti-Sleep system should not exceed"
+			AntiSleepSys_ram
+	]	
+]

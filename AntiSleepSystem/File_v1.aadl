@@ -1,0 +1,109 @@
+package syst
+public
+
+system AntiSleepSystem
+end AntiSleepSystem;
+
+system implementation AntiSleepSystem.with_devices 
+	subcomponents
+		this_kinect_detector: device KinectDetector;
+		this_audio_system: device AudioSystem;
+		this_LED_display: device LEDDisplay;	
+		this_dome_lights: device DomeLights;
+		this_controller: process Controller;
+		this_bus: bus HardwareConnection.impl;
+		this_processor: processor SystemProcessor.impl;
+	connections
+		kinect_connection: port this_kinect_detector.usb_output -> this_controller.usb_input;
+		LED_display_out: port this_controller.signal_output -> this_LED_display.video_input;
+		audio_connection: port this_controller.audio_output -> this_audio_system.audio_input;
+		dome_light_connection: port this_controller.dome_lights_output -> this_dome_lights.light_input;
+		
+		kinect_bus_connections: bus access this_bus -> this_kinect_detector.bus_access;
+		audio_bus_connections: bus access this_bus -> this_audio_system.bus_access;
+		LED_bus_connection: bus access this_bus -> this_LED_display.bus_access;
+		dome_light_bus_connection: bus access this_bus -> this_dome_lights.bus_access;
+		processor_bus_connection: bus access this_bus -> this_processor.bus_access;		
+end AntiSleepSystem.with_devices;
+
+processor SystemProcessor
+	features
+		bus_access: requires bus access HardwareConnection;
+end SystemProcessor;
+processor implementation SystemProcessor.impl
+		subcomponents 
+			this_memory: memory Ram;
+end SystemProcessor.impl;
+
+memory Ram
+end Ram;
+
+bus HardwareConnection
+end HardwareConnection;
+
+bus implementation HardwareConnection.impl
+end HardwareConnection.impl;
+
+process Controller
+	features
+		signal_output: out event port;
+		usb_input: in event port;
+		audio_output: out event port;
+		dome_lights_output: out event port;
+	annex behavior_specification {**
+		states
+			InActive : initial state;
+			Active : state;
+		transitions
+			t1 : InActive -[active_cmd? = false]-> InActive;
+			t2 : InActive -[active_cmd? = true]-> Active;
+			t3 : Active -[active_cmd? = true]-> Active;
+			t4 : Active -[active_cmd? = false]-> InActive;
+**}; 	
+end Controller;
+process implementation Controller.impl	
+end Controller.impl;
+
+device KinectDetector
+	features
+		usb_output: out event port;
+		bus_access: requires bus access HardwareConnection;
+	annex behavior_specification {**
+		states
+			InActive : initial state;
+			Active : state;
+		transitions
+			t1 : InActive -[active_cmd? = false]-> InActive;
+			t2 : InActive -[active_cmd? = true]-> Active;
+			t3 : Active -[active_cmd? = true]-> Active;
+			t4 : Active -[active_cmd? = false]-> InActive;
+**}; 	
+end KinectDetector;
+device implementation KinectDetector.impl
+end KinectDetector.impl;
+
+device AudioSystem
+	features
+		audio_input: in event port;
+		bus_access: requires bus access HardwareConnection;
+end AudioSystem;
+device implementation AudioSystem.impl
+end AudioSystem.impl;
+
+device LEDDisplay
+	features
+		video_input: in event port;	
+		bus_access: requires bus access HardwareConnection;
+end LEDDisplay;
+device implementation LEDDisplay.impl
+end LEDDisplay.impl;
+
+device DomeLights
+	features
+		light_input: in event port;
+		bus_access: requires bus access HardwareConnection;
+end DomeLights;
+device implementation DomeLights.impl
+end DomeLights.impl;
+
+end syst;

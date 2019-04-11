@@ -1,0 +1,26 @@
+package controllerstatemachine
+public
+   with Base_Types;
+
+system controller_interface
+      features           
+      	feasiblerate: in data port Base_Types::Float;
+        actualrate: in data port Base_Types::Float;
+   end controller_interface;
+ 
+system kinect_controller extends controller_interface
+	annex behavior_specification{**
+	   	states
+	       steady: initial state;
+	       detect_movement: state;
+	       invalid_detection: state;
+	    transitions
+	      steady-[actualrate = feasiblerate]->steady;
+          steady-[actualrate < feasiblerate]->detect_movement;
+          steady-[actualrate > feasiblerate]->invalid_detection;
+          detect_movement-[actualrate = feasiblerate]->steady;
+          invalid_detection-[actualrate = feasiblerate]->steady;
+	   **};       
+end kinect_controller;
+   
+end controllerstatemachine;

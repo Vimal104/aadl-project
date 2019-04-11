@@ -1,0 +1,7 @@
+property set System_Properties is
+
+  Bandwidth : Data_Volume applies to (bus);
+  Bandwidth_Range : type range of Data_Volume;
+  
+end System_Properties;
+

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ASCII"?>
+<instance:SystemInstance xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance" name="AntiSleepSystem_with_devices_Instance" category="system">
+  <componentInstance name="this_bus" category="bus">
+    <subcomponent xsi:type="aadl2:BusSubcomponent" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedBusSubcomponent.0"/>
+    <index>0</index>
+    <classifier xsi:type="aadl2:BusImplementation" href="../SleepSystem.aadl#syst.HardwareConnection.impl"/>
+  </componentInstance>
+  <componentInstance name="this_kinect_detector" category="device">
+    <featureInstance name="usb_output" category="eventPort" direction="out">
+      <feature xsi:type="aadl2:EventPort" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedEventPort.0"/>
+    </featureInstance>
+    <featureInstance name="bus_access" category="busAccess" direction="in out">
+      <feature xsi:type="aadl2:BusAccess" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.9/@ownedBusAccess.0"/>
+    </featureInstance>
+    <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedDeviceSubcomponent.0"/>
+    <index>0</index>
+    <classifier xsi:type="aadl2:DeviceType" href="../SleepSystem.aadl#syst.KinectDetector"/>
+  </componentInstance>
+  <componentInstance name="this_audio_system" category="device">
+    <featureInstance name="audio_input" category="eventPort">
+      <feature xsi:type="aadl2:EventPort" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.11/@ownedEventPort.0"/>
+    </featureInstance>
+    <featureInstance name="bus_access" category="busAccess" direction="in out">
+      <feature xsi:type="aadl2:BusAccess" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.11/@ownedBusAccess.0"/>
+    </featureInstance>
+    <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedDeviceSubcomponent.1"/>
+    <index>0</index>
+    <classifier xsi:type="aadl2:DeviceType" href="../SleepSystem.aadl#syst.AudioSystem"/>
+  </componentInstance>
+  <componentInstance name="this_LED_display" category="device">
+    <featureInstance name="video_input" category="eventPort">
+      <feature xsi:type="aadl2:EventPort" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.13/@ownedEventPort.0"/>
+    </featureInstance>
+    <featureInstance name="bus_access" category="busAccess" direction="in out">
+      <feature xsi:type="aadl2:BusAccess" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.13/@ownedBusAccess.0"/>
+    </featureInstance>
+    <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedDeviceSubcomponent.2"/>
+    <index>0</index>
+    <classifier xsi:type="aadl2:DeviceType" href="../SleepSystem.aadl#syst.LEDDisplay"/>
+  </componentInstance>
+  <componentInstance name="this_dome_lights" category="device">
+    <featureInstance name="light_input" category="eventPort">
+      <feature xsi:type="aadl2:EventPort" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.15/@ownedEventPort.0"/>
+    </featureInstance>
+    <featureInstance name="bus_access" category="busAccess" direction="in out">
+      <feature xsi:type="aadl2:BusAccess" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.15/@ownedBusAccess.0"/>
+    </featureInstance>
+    <subcomponent xsi:type="aadl2:DeviceSubcomponent" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedDeviceSubcomponent.3"/>
+    <index>0</index>
+    <classifier xsi:type="aadl2:DeviceType" href="../SleepSystem.aadl#syst.DomeLights"/>
+  </componentInstance>
+  <componentInstance name="this_controller" category="process">
+    <featureInstance name="signal_output" category="eventPort" direction="out">
+      <feature xsi:type="aadl2:EventPort" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.7/@ownedEventPort.0"/>
+    </featureInstance>
+    <featureInstance name="usb_input" category="eventPort">
+      <feature xsi:type="aadl2:EventPort" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.7/@ownedEventPort.1"/>
+    </featureInstance>
+    <featureInstance name="audio_output" category="eventPort" direction="out">
+      <feature xsi:type="aadl2:EventPort" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.7/@ownedEventPort.2"/>
+    </featureInstance>
+    <featureInstance name="dome_lights_output" category="eventPort" direction="out">
+      <feature xsi:type="aadl2:EventPort" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.7/@ownedEventPort.3"/>
+    </featureInstance>
+    <subcomponent xsi:type="aadl2:ProcessSubcomponent" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedProcessSubcomponent.0"/>
+    <index>0</index>
+    <classifier xsi:type="aadl2:ProcessType" href="../SleepSystem.aadl#syst.Controller"/>
+  </componentInstance>
+  <componentInstance name="this_processor" category="processor">
+    <featureInstance name="bus_access" category="busAccess" direction="in out">
+      <feature xsi:type="aadl2:BusAccess" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.2/@ownedBusAccess.0"/>
+    </featureInstance>
+    <componentInstance name="this_memory" category="memory">
+      <subcomponent xsi:type="aadl2:MemorySubcomponent" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.3/@ownedMemorySubcomponent.0"/>
+      <index>0</index>
+      <classifier xsi:type="aadl2:MemoryType" href="../SleepSystem.aadl#syst.Ram"/>
+    </componentInstance>
+    <subcomponent xsi:type="aadl2:ProcessorSubcomponent" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedProcessorSubcomponent.0"/>
+    <index>0</index>
+    <classifier xsi:type="aadl2:ProcessorImplementation" href="../SleepSystem.aadl#syst.SystemProcessor.impl"/>
+  </componentInstance>
+  <connectionInstance name="this_bus -> this_kinect_detector.bus_access" complete="true" kind="accessConnection" destination="//@componentInstance.1/@featureInstance.1" source="//@componentInstance.0">
+    <connectionReference context="/" source="//@componentInstance.0" destination="//@componentInstance.1/@featureInstance.1">
+      <connection xsi:type="aadl2:AccessConnection" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedAccessConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="this_bus -> this_audio_system.bus_access" complete="true" kind="accessConnection" destination="//@componentInstance.2/@featureInstance.1" source="//@componentInstance.0">
+    <connectionReference context="/" source="//@componentInstance.0" destination="//@componentInstance.2/@featureInstance.1">
+      <connection xsi:type="aadl2:AccessConnection" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedAccessConnection.1"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="this_bus -> this_LED_display.bus_access" complete="true" kind="accessConnection" destination="//@componentInstance.3/@featureInstance.1" source="//@componentInstance.0">
+    <connectionReference context="/" source="//@componentInstance.0" destination="//@componentInstance.3/@featureInstance.1">
+      <connection xsi:type="aadl2:AccessConnection" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedAccessConnection.2"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="this_bus -> this_dome_lights.bus_access" complete="true" kind="accessConnection" destination="//@componentInstance.4/@featureInstance.1" source="//@componentInstance.0">
+    <connectionReference context="/" source="//@componentInstance.0" destination="//@componentInstance.4/@featureInstance.1">
+      <connection xsi:type="aadl2:AccessConnection" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedAccessConnection.3"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="this_bus -> this_processor.bus_access" complete="true" kind="accessConnection" destination="//@componentInstance.6/@featureInstance.0" source="//@componentInstance.0">
+    <connectionReference context="/" source="//@componentInstance.0" destination="//@componentInstance.6/@featureInstance.0">
+      <connection xsi:type="aadl2:AccessConnection" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedAccessConnection.4"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="this_kinect_detector.usb_output -> this_controller.usb_input" complete="true" kind="portConnection" destination="//@componentInstance.5/@featureInstance.1" source="//@componentInstance.1/@featureInstance.0">
+    <connectionReference context="/" source="//@componentInstance.1/@featureInstance.0" destination="//@componentInstance.5/@featureInstance.1">
+      <connection xsi:type="aadl2:PortConnection" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.0"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="this_controller.signal_output -> this_LED_display.video_input" complete="true" kind="portConnection" destination="//@componentInstance.3/@featureInstance.0" source="//@componentInstance.5/@featureInstance.0">
+    <connectionReference context="/" source="//@componentInstance.5/@featureInstance.0" destination="//@componentInstance.3/@featureInstance.0">
+      <connection xsi:type="aadl2:PortConnection" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.1"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="this_controller.audio_output -> this_audio_system.audio_input" complete="true" kind="portConnection" destination="//@componentInstance.2/@featureInstance.0" source="//@componentInstance.5/@featureInstance.2">
+    <connectionReference context="/" source="//@componentInstance.5/@featureInstance.2" destination="//@componentInstance.2/@featureInstance.0">
+      <connection xsi:type="aadl2:PortConnection" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.2"/>
+    </connectionReference>
+  </connectionInstance>
+  <connectionInstance name="this_controller.dome_lights_output -> this_dome_lights.light_input" complete="true" kind="portConnection" destination="//@componentInstance.4/@featureInstance.0" source="//@componentInstance.5/@featureInstance.3">
+    <connectionReference context="/" source="//@componentInstance.5/@featureInstance.3" destination="//@componentInstance.4/@featureInstance.0">
+      <connection xsi:type="aadl2:PortConnection" href="../SleepSystem.aadl#/0/@ownedPublicSection/@ownedClassifier.1/@ownedPortConnection.3"/>
+    </connectionReference>
+  </connectionInstance>
+  <systemOperationMode name="No Modes"/>
+  <componentImplementation xsi:type="aadl2:SystemImplementation" href="../SleepSystem.aadl#syst.AntiSleepSystem.with_devices"/>
+</instance:SystemInstance>
